@@ -2,6 +2,7 @@
 //(seeAllData = true)
 
 private class Test_OIT {
+    
     @isTest static void Test_OIT() {
 
         // variables so I can use them in the creation of multiple test objects
@@ -64,8 +65,10 @@ private class Test_OIT {
             sku_as_id__c = test_SKU,
             UnitPrice = 100,
             IsActive = true,
-            UseStandardPrice = false
-
+            UseStandardPrice = false,
+            //literally just including this so the field "pricebook_sku_as_id" gets included in the package since there's
+            //apparently no way to directly select it in the package manager
+            pricebook_sku_as_id__c = 'test pricebook_sku_as_id'
         );
 
         insert testPricebookEntry;
