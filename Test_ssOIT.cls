@@ -72,6 +72,9 @@ private class Test_ssOIT {
 
         insert testProduct;
 
+        // Re-Query the product
+        testProduct = [SELECT Id, sku_as_id__c FROM Product2 WHERE (sku_as_id__c = :test_SKU) ];
+
         // Create the PricebookEntry
         PricebookEntry testPricebookEntry = new PricebookEntry(
             Pricebook2Id = standardPricebook.Id,
@@ -87,7 +90,7 @@ private class Test_ssOIT {
 
 
         // Re-Query the PBE
-        testPricebookEntry = [SELECT Id, Pricebook2.IsStandard FROM PricebookEntry WHERE (sku_as_id__c = :test_SKU) ];
+        testPricebookEntry = [SELECT Id, Pricebook2.IsStandard, sku_as_id__c FROM PricebookEntry WHERE (sku_as_id__c = :test_SKU) ];
         
         // Should also return true
         system.assertEquals(true, testPricebookEntry.Pricebook2.IsStandard, 'The Standard Pricebook should return true from the PBE as well.');
@@ -101,6 +104,10 @@ private class Test_ssOIT {
 
         insert testAccount;
 
+        
+        testAccount = [SELECT Id, email_as_id__c FROM Account WHERE (email_as_id__c = :test_email_as_id) ];
+
+
         // Create the Order
         Order testOrder = new Order(
             AccountId = testAccount.Id,
@@ -113,7 +120,14 @@ private class Test_ssOIT {
 
         insert testOrder;
 
-
+        testOrder = [SELECT Id, 
+                        AccountId,
+                        EffectiveDate,
+                        Pricebook2Id,
+                        Status,
+                        shipstation_ordernumber_as_id__c,
+                        Marketplace__c
+                        FROM Order WHERE (shipstation_ordernumber_as_id__c LIKE :test_shipstation_ordernumber_as_id)];
 
         // Create the ShipstationOrderItemImport__c
         ShipstationOrderItemImport__c test_SSOIT = new ShipstationOrderItemImport__c(
@@ -155,7 +169,7 @@ System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
         // Insert the test ShipstationOrderItemImport__c
         Test.startTest();
         Database.SaveResult result = Database.insert(test_SSOIT, false);
-        Test.stopTest();
+        //Test.stopTest();
 
 
 
@@ -217,7 +231,7 @@ System.Debug(LoggingLevel.ERROR,test_ordernumber_sku_as_id);
         System.assertEquals(test_shipstation_ordernumber_as_id, test_SSOIT.shipstation_ordernumber_as_id__c);
         System.assertEquals(test_ordernumber_sku_as_id, test_SSOIT.ordernumber_sku_as_id__c);
 
-        //assertthattheorderitemwasmade
+        //assert that the orderitem was made
         System.assert(testOrderItem!=null);
 
         //defaultIdfields
@@ -296,7 +310,7 @@ System.Debug(LoggingLevel.ERROR,'test_marketplace');
 System.Debug(LoggingLevel.ERROR,test_marketplace);
 
 
-
+        
 
 
 
@@ -307,6 +321,34 @@ System.Debug(LoggingLevel.ERROR,test_marketplace);
 
 
 
+        // Create the second ShipstationOrderItemImport__c
+        ShipstationOrderItemImport__c test_SSOIT2 = new ShipstationOrderItemImport__c(
+
+            Fulfillment_SKU__c = test_fulfillmentSKU,
+            Image_URL__c = test_imageURL,
+            Name__c = test_name,
+            SKU__c = test_SKU,
+            UPC__c = test_UPC,
+            Weight_Units__c = test_weightUnits,
+            Product_ID__c = test_productID,
+            Quantity__c = test_quantity,
+            Shipping_Amount__c = test_shippingAmount,
+            Tax_Amount__c = test_taxAmount,
+            Unit_Price__c = test_unitPrice,
+            Weight_Value__c = test_weightValue,
+            Marketplace__c = test_marketplace,
+            shipstation_ordernumber_as_id__c = test_shipstation_ordernumber_as_id,
+            ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
+        );
+
+
+                OrderItem testOrderItem2 = new OrderItem(
+
+                    //default fields
+                    //only set these
+                    OrderId = testOrder.Id,
+                    Product2Id = testProduct.ID, 
+                    PricebookEntryId = testPricebookEntry.Id,
 
 
 
@@ -316,9 +358,184 @@ System.Debug(LoggingLevel.ERROR,test_marketplace);
 
 
 
+                    //custom fields
+                    /*
+                    Fulfillment_SKU__c = orderItemImport.Fulfillment_SKU__c,
+                    Image_URL__c = orderItemImport.Image_URL__c,
+                    Name__c = orderItemImport.Name__c,
+                    SKU__c = orderItemImport.SKU__c,
+                    UPC__c = orderItemImport.UPC__c,
+                    Weight_Units__c = orderItemImport.Weight_Units__c,
+                    Product_ID__c = orderItemImport.Product_ID__c,
+                    Quantity__c = orderItemImport.Quantity__c,
+                    Shipping_Amount__c = orderItemImport.Shipping_Amount__c,
+                    Tax_Amount__c = orderItemImport.Tax_Amount__c,
+                    Unit_Price__c = orderItemImport.Unit_Price__c,
+                    Weight_Value__c = orderItemImport.Weight_Value__c,
+                    //Marketplace__c = orderItemImport.Marketplace__c,
+                    //shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
+                    
+                    
+                    */
+
+                    //and this one so it can find it; the rest will be set by the trigger
+
+                    ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
+
+                    //no wait thast stupid lmao we only want the ones that it will set
+                    //no actually we do want this
+
+                );
 
 
 
+
+
+
+
+
+
+        //Test.startTest();
+        result = Database.insert(test_SSOIT2, false);
+        //Test.stopTest();
+
+        // already has an existing OrderItem from above lol
+        // no wait that's stupid
+
+
+
+
+
+
+
+        testOrderItem2 = [SELECT Id, 
+                            OrderId, 
+                            Product2Id, 
+                            PricebookEntryId,
+
+                            Quantity,
+                            UnitPrice,
+
+                            Fulfillment_SKU__c, 
+                            Image_URL__c,
+                            Name__c, 
+                            SKU__c, 
+                            UPC__c, 
+                            Weight_Units__c, 
+                            Product_ID__c, 
+                            Quantity__c, 
+                            Shipping_Amount__c, 
+                            Tax_Amount__c, 
+                            Unit_Price__c, 
+                            Weight_Value__c, 
+                            ordernumber_sku_as_id__c
+                            FROM OrderItem WHERE (ordernumber_sku_as_id__c LIKE :test_ordernumber_sku_as_id)];
+
+        System.assert(result.isSuccess());
+
+        //customfields
+        System.assertEquals(test_fulfillmentSKU, test_SSOIT2.Fulfillment_SKU__c);
+        System.assertEquals(test_imageURL, test_SSOIT2.Image_URL__c);
+        System.assertEquals(test_name, test_SSOIT2.Name__c);
+        System.assertEquals(test_SKU, test_SSOIT2.SKU__c);
+        System.assertEquals(test_UPC, test_SSOIT2.UPC__c);
+        System.assertEquals(test_weightUnits, test_SSOIT2.Weight_Units__c);
+        System.assertEquals(test_productID, test_SSOIT2.Product_ID__c);
+        System.assertEquals(test_quantity, test_SSOIT2.Quantity__c);
+        System.assertEquals(test_shippingAmount, test_SSOIT2.Shipping_Amount__c);
+        System.assertEquals(test_taxAmount, test_SSOIT2.Tax_Amount__c);
+        System.assertEquals(test_unitPrice, test_SSOIT2.Unit_Price__c);
+        System.assertEquals(test_weightValue, test_SSOIT2.Weight_Value__c);
+        System.assertEquals(test_marketplace, test_SSOIT2.Marketplace__c);
+        System.assertEquals(test_shipstation_ordernumber_as_id, test_SSOIT2.shipstation_ordernumber_as_id__c);
+        System.assertEquals(test_ordernumber_sku_as_id, test_SSOIT2.ordernumber_sku_as_id__c);
+
+        //assert that the orderitem was made
+        System.assert(testOrderItem2!=null);
+
+        //defaultIdfields
+        System.assertEquals(testOrder.Id, testOrderItem2.OrderId);
+        System.assertEquals(testProduct.Id, testOrderItem2.Product2Id);
+        System.assertEquals(testPricebookEntry.Id, testOrderItem2.PricebookEntryId);
+
+        //otherdefaultfields
+        System.assertEquals(test_quantity, testOrderItem2.Quantity);
+        System.assertEquals(test_unitPrice, testOrderItem2.UnitPrice);
+
+        //customfields
+        System.assertEquals(test_fulfillmentSKU, testOrderItem2.Fulfillment_SKU__c);
+        System.assertEquals(test_imageURL, testOrderItem2.Image_URL__c);
+        System.assertEquals(test_name, testOrderItem2.Name__c);
+        System.assertEquals(test_SKU, testOrderItem2.SKU__c);
+        System.assertEquals(test_UPC, testOrderItem2.UPC__c);
+        System.assertEquals(test_weightUnits, testOrderItem2.Weight_Units__c);
+        System.assertEquals(test_productID, testOrderItem2.Product_ID__c);
+        System.assertEquals(test_quantity, testOrderItem2.Quantity__c);
+        System.assertEquals(test_shippingAmount, testOrderItem2.Shipping_Amount__c);
+        System.assertEquals(test_taxAmount, testOrderItem2.Tax_Amount__c);
+        System.assertEquals(test_unitPrice, testOrderItem2.Unit_Price__c);
+        System.assertEquals(test_weightValue, testOrderItem2.Weight_Value__c);
+        //System.assertEquals(test_marketplace, testOrderItem2.Marketplace__c);
+        //System.assertEquals(test_shipstation_ordernumber_as_id, testOrderItem2.shipstation_ordernumber_as_id__c);
+        System.assertEquals(test_ordernumber_sku_as_id, testOrderItem2.ordernumber_sku_as_id__c);
+
+
+
+
+
+
+        // now with a matching existing OrderItem
+/*
+        ShipstationOrderItemImport__c test_SSOIT = new ShipstationOrderItemImport__c(
+
+            Fulfillment_SKU__c = test_fulfillmentSKU,
+            Image_URL__c = test_imageURL,
+            Name__c = test_name,
+            SKU__c = test_SKU,
+            UPC__c = test_UPC,
+            Weight_Units__c = test_weightUnits,
+            Product_ID__c = test_productID,
+            Quantity__c = test_quantity,
+            Shipping_Amount__c = test_shippingAmount,
+            Tax_Amount__c = test_taxAmount,
+            Unit_Price__c = test_unitPrice,
+            Weight_Value__c = test_weightValue,
+            Marketplace__c = test_marketplace,
+            shipstation_ordernumber_as_id__c = test_shipstation_ordernumber_as_id,
+            ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
+        );
+
+                OrderItem newOrderItem = new OrderItem(
+
+                    //default fields
+                    OrderId = testOrder.Id,
+                    Product2Id = productId, 
+                    PricebookEntryId = pricebookentryId, 
+                    Quantity = orderItemImport.Quantity__c,
+                    UnitPrice = orderItemImport.Unit_Price__c,
+
+                    //custom fields
+                    Fulfillment_SKU__c = orderItemImport.Fulfillment_SKU__c,
+                    Image_URL__c = orderItemImport.Image_URL__c,
+                    Name__c = orderItemImport.Name__c,
+                    SKU__c = orderItemImport.SKU__c,
+                    UPC__c = orderItemImport.UPC__c,
+                    Weight_Units__c = orderItemImport.Weight_Units__c,
+                    Product_ID__c = orderItemImport.Product_ID__c,
+                    Quantity__c = orderItemImport.Quantity__c,
+                    Shipping_Amount__c = orderItemImport.Shipping_Amount__c,
+                    Tax_Amount__c = orderItemImport.Tax_Amount__c,
+                    Unit_Price__c = orderItemImport.Unit_Price__c,
+                    Weight_Value__c = orderItemImport.Weight_Value__c,
+                    //Marketplace__c = orderItemImport.Marketplace__c,
+                    //shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
+                    ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c
+                );
+
+*/
+
+
+Test.stopTest();
 
 
 
