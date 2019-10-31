@@ -2,6 +2,7 @@
 //(seeAllData = true)
 
 private class Test_ssOIT {
+    
     @isTest static void Test_ssOIT() {
 
         // variables so I can use them in the creation of multiple test objects
