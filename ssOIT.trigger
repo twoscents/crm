@@ -123,9 +123,9 @@ System.Debug(LoggingLevel.ERROR,'6');
                 OrderItem existingItem = orderitemList[0];
 
                 // default fields
-                existingItem.OrderId = orderId;
-                existingItem.Product2Id = productId; 
-                existingItem.PricebookEntryId = pricebookentryId; 
+                //existingItem.OrderId = orderId;
+                //existingItem.Product2Id = productId; 
+                //existingItem.PricebookEntryId = pricebookentryId; 
                 existingItem.Quantity = orderItemImport.Quantity__c;
                 existingItem.UnitPrice = orderItemImport.Unit_Price__c;
 
@@ -145,6 +145,8 @@ System.Debug(LoggingLevel.ERROR,'6');
                 //existingItem.Marketplace__c = orderItemImport.Marketplace__c;
                 //existingItem.shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c;
                 existingItem.ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c;
+
+                update existingItem;
 
             }       
             else{
