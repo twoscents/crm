@@ -4,8 +4,6 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
 
         String pricebookname;
 
-
-
         String sku_as_id = orderItemImport.SKU__c;
         String shipstation_ordernumber_as_id = orderItemImport.shipstation_ordernumber_as_id__c;
         
@@ -14,10 +12,6 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
         Id productId;
         Id pricebookId;        
         Id pricebookentryId;
-
-        //List<Order> orderList = [SELECT Id, shipstation_ordernumber_as_id__c, PriceBook2Id, Marketplace__c FROM Order WHERE (shipstation_ordernumber_as_id__c LIKE :shipstation_ordernumber_as_id)];
-        //List<Order> orderList = [SELECT Id, shipstation_ordernumber_as_id__c FROM Order WHERE (shipstation_ordernumber_as_id__c LIKE :shipstation_ordernumber_as_id)];
-
 
         List<Order> orderList = [SELECT Id, 
                         AccountId,
@@ -30,44 +24,19 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
 
 
 
-            Order order = orderList[0];
-            // assign the marketplace to the order
-System.Debug(LoggingLevel.ERROR,'before');
-System.Debug(LoggingLevel.ERROR,'orderItemImport.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,orderItemImport.Marketplace__c);
+        Order order = orderList[0];
 
-System.Debug(LoggingLevel.ERROR,'order.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,order.Marketplace__c);
+        // assign the marketplace to the order
+        order.Marketplace__c = orderItemImport.Marketplace__c;
 
-            order.Marketplace__c = orderItemImport.Marketplace__c;
-
-            update order;
-
-System.Debug(LoggingLevel.ERROR,'after');
-System.Debug(LoggingLevel.ERROR,'orderItemImport.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,orderItemImport.Marketplace__c);
-
-System.Debug(LoggingLevel.ERROR,'order.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,order.Marketplace__c);
-
-System.Debug(LoggingLevel.ERROR,'1');
+        update order;
 
         List<Product2> productList = [SELECT Id, sku_as_id__c FROM Product2 WHERE (sku_as_id__c LIKE :sku_as_id )];
 
-System.Debug(LoggingLevel.ERROR,'2');
-
         if( (orderList != null) && (orderList.size() > 0) ){
 
-
             orderId = order.Id;
-
-
-
-System.Debug(LoggingLevel.ERROR,'3a');
-
-            if( order.PriceBook2Id != null ){
-
-System.Debug(LoggingLevel.ERROR,'3b');            
+            if( order.PriceBook2Id != null ){         
             
                 pricebookId = order.PriceBook2Id;
             }
@@ -75,35 +44,22 @@ System.Debug(LoggingLevel.ERROR,'3b');
             else if( pricebookname != null ){
                 List<Pricebook2> pricebookList = [SELECT Id, Name FROM Pricebook2 WHERE (Name LIKE :pricebookname)];
 
-System.Debug(LoggingLevel.ERROR,'3c');
-
                 if( (pricebookList != null) && (pricebookList.size() > 0) ){
-
-System.Debug(LoggingLevel.ERROR,'3d');
 
                     pricebookId = pricebookList[0].Id;
                 }
             }
             else{
-
-System.Debug(LoggingLevel.ERROR,'3e');
-
                 PriceBook2 standard = [ SELECT Id, isStandard FROM Pricebook2 WHERE ( isStandard = true )];
                 pricebookId = standard.Id;
             }
         }
 
-System.Debug(LoggingLevel.ERROR,'4');
-
         if( (productList != null) && (productList.size() > 0) ){
             productId = productList[0].Id;
         }
-        
-System.Debug(LoggingLevel.ERROR,'5');
 
         List<PriceBookEntry> pricebookentryList = [SELECT Id, Pricebook2Id, sku_as_id__c FROM PricebookEntry WHERE (Pricebook2Id = :pricebookId) AND (sku_as_id__c LIKE :sku_as_id)];
-
-System.Debug(LoggingLevel.ERROR,'6');
 
         if( (pricebookentryList != null) && (pricebookentryList.size() > 0) ){
             pricebookentryId = pricebookentryList[0].Id;
@@ -123,6 +79,7 @@ System.Debug(LoggingLevel.ERROR,'6');
                 OrderItem existingItem = orderitemList[0];
 
                 // default fields
+                // can't write to the next three
                 //existingItem.OrderId = orderId;
                 //existingItem.Product2Id = productId; 
                 //existingItem.PricebookEntryId = pricebookentryId; 
@@ -142,8 +99,6 @@ System.Debug(LoggingLevel.ERROR,'6');
                 existingItem.Tax_Amount__c = orderItemImport.Tax_Amount__c;
                 existingItem.Unit_Price__c = orderItemImport.Unit_Price__c;
                 existingItem.Weight_Value__c = orderItemImport.Weight_Value__c;
-                //existingItem.Marketplace__c = orderItemImport.Marketplace__c;
-                //existingItem.shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c;
                 existingItem.ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c;
 
                 update existingItem;
@@ -172,50 +127,12 @@ System.Debug(LoggingLevel.ERROR,'6');
                     Tax_Amount__c = orderItemImport.Tax_Amount__c,
                     Unit_Price__c = orderItemImport.Unit_Price__c,
                     Weight_Value__c = orderItemImport.Weight_Value__c,
-                    //Marketplace__c = orderItemImport.Marketplace__c,
-                    //shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
                     ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c
                 );
-
-System.Debug(LoggingLevel.ERROR,'newItem.ordernumber_sku_as_id__c');
-System.Debug(LoggingLevel.ERROR, newitem.ordernumber_sku_as_id__c);
-System.Debug(LoggingLevel.ERROR,'orderItemImport.ordernumber_sku_as_id__c');
-System.Debug(LoggingLevel.ERROR,orderItemImport.ordernumber_sku_as_id__c);
-
-
-
-System.Debug(LoggingLevel.ERROR,'just before end of it');
-System.Debug(LoggingLevel.ERROR,'orderItemImport.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,orderItemImport.Marketplace__c);
-
-System.Debug(LoggingLevel.ERROR,'order.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,order.Marketplace__c);
-
-
-System.Debug(LoggingLevel.ERROR,'the full debug:');
-
-System.Debug(LoggingLevel.ERROR,'order.Id');
-System.Debug(LoggingLevel.ERROR,order.Id);
-System.Debug(LoggingLevel.ERROR,'order.AccountId');
-System.Debug(LoggingLevel.ERROR,order.AccountId);
-System.Debug(LoggingLevel.ERROR,'order.EffectiveDate');
-System.Debug(LoggingLevel.ERROR,order.EffectiveDate);
-System.Debug(LoggingLevel.ERROR,'order.Pricebook2Id');
-System.Debug(LoggingLevel.ERROR,order.Pricebook2Id);
-System.Debug(LoggingLevel.ERROR,'order.Status');
-System.Debug(LoggingLevel.ERROR,order.Status);
-System.Debug(LoggingLevel.ERROR,'order.shipstation_ordernumber_as_id__c');
-System.Debug(LoggingLevel.ERROR,order.shipstation_ordernumber_as_id__c);
-System.Debug(LoggingLevel.ERROR,'order.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,order.Marketplace__c);
-
-
-
-
 
                 insert newItem;
             }
         }
 
-   }
+    }
 }
