@@ -1,6 +1,6 @@
 trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
-
-   for(ShipstationOrderItemImport__c orderItemImport : Trigger.new){
+    
+    for(ShipstationOrderItemImport__c orderItemImport : Trigger.new){
 
         String pricebookname;
 
@@ -22,18 +22,16 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
                         Marketplace__c
                         FROM Order WHERE (shipstation_ordernumber_as_id__c LIKE :shipstation_ordernumber_as_id)];
 
-
-
-        Order order = orderList[0];
-
-        // assign the marketplace to the order
-        order.Marketplace__c = orderItemImport.Marketplace__c;
-
-        update order;
-
         List<Product2> productList = [SELECT Id, sku_as_id__c FROM Product2 WHERE (sku_as_id__c LIKE :sku_as_id )];
 
         if( (orderList != null) && (orderList.size() > 0) ){
+
+            Order order = orderList[0];
+
+            // assign the marketplace to the order
+            order.Marketplace__c = orderItemImport.Marketplace__c;
+
+            update order;
 
             orderId = order.Id;
             if( order.PriceBook2Id != null ){         
@@ -135,4 +133,5 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
         }
 
     }
+
 }
