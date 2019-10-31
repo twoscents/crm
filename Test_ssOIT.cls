@@ -25,21 +25,6 @@ private class Test_ssOIT {
         String test_email_as_id = 'test@test.com';
         Date test_date = system.today();
 
-
-        System.Debug(LoggingLevel.ERROR,'YOOO LETS SEE IF WE CAN FIND WHERE THIS PIECE OF SHIT PRINTS THIS SHIT AYYLMAO');
-
-/*
-"ID"
-"01s4T000001qIGbQAM"
-"01s4T000001qIGcQAM"
-"01s4T000001rjyyQAA"
-
-        Pricebook2 standardPricebook = [SELECT IsStandard FROM Pricebook2 WHERE Id = '01s4T000001rjyyQAA'];
-
-        standardPricebook = [SELECT IsStandard FROM Pricebook2 WHERE Id = :standardPricebook.Id];
-
-        */
-
         // Instantiate the Pricebook2 record first, setting the Id
         Pricebook2 standardPricebook = new Pricebook2(
             Id = Test.getStandardPricebookId(),
@@ -58,10 +43,6 @@ private class Test_ssOIT {
 
         // This should return true now
         system.assertEquals(true, standardPricebook.IsStandard, 'The Standard Pricebook should now return IsStandard = true');
-
-
-
-
 
         // Create the Product
         Product2 testProduct = new Product2(
@@ -88,7 +69,6 @@ private class Test_ssOIT {
 
         insert testPricebookEntry;
 
-
         // Re-Query the PBE
         testPricebookEntry = [SELECT Id, Pricebook2.IsStandard, sku_as_id__c FROM PricebookEntry WHERE (sku_as_id__c = :test_SKU) ];
         
@@ -103,10 +83,8 @@ private class Test_ssOIT {
         );
 
         insert testAccount;
-
         
         testAccount = [SELECT Id, email_as_id__c FROM Account WHERE (email_as_id__c = :test_email_as_id) ];
-
 
         // Create the Order
         Order testOrder = new Order(
@@ -149,45 +127,10 @@ private class Test_ssOIT {
             ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
         );
 
-System.Debug(LoggingLevel.ERROR,'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ before insert');
-System.Debug(LoggingLevel.ERROR,'testOrder.Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.AccountId');
-System.Debug(LoggingLevel.ERROR,testOrder.AccountId);
-System.Debug(LoggingLevel.ERROR,'testOrder.EffectiveDate');
-System.Debug(LoggingLevel.ERROR,testOrder.EffectiveDate);
-System.Debug(LoggingLevel.ERROR,'testOrder.Pricebook2Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Pricebook2Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.Status');
-System.Debug(LoggingLevel.ERROR,testOrder.Status);
-System.Debug(LoggingLevel.ERROR,'testOrder.shipstation_ordernumber_as_id__c');
-System.Debug(LoggingLevel.ERROR,testOrder.shipstation_ordernumber_as_id__c);
-System.Debug(LoggingLevel.ERROR,'testOrder.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
-
-
         // Insert the test ShipstationOrderItemImport__c
         Test.startTest();
         Database.SaveResult result = Database.insert(test_SSOIT, false);
         //Test.stopTest();
-
-
-
-
-System.Debug(LoggingLevel.ERROR,':test_ordernumber_sku_as_id');
-System.Debug(LoggingLevel.ERROR,test_ordernumber_sku_as_id);
-
-        // query for the orderitem that should have been created by the trigger
-        //OrderItem testOrderItem = [SELECT Id, ordernumber_sku_as_id__c FROM OrderItem WHERE (ordernumber_sku_as_id__c LIKE :test_ordernumber_sku_as_id)];
-        //OrderItem testOrderItem = [SELECT Id FROM OrderItem WHERE (ordernumber_sku_as_id__c LIKE :test_SSOIT.ordernumber_sku_as_id__c)];
-
-
-
-
-
-
-
-
 
         OrderItem testOrderItem = [SELECT Id, 
                             OrderId, 
@@ -260,23 +203,6 @@ System.Debug(LoggingLevel.ERROR,test_ordernumber_sku_as_id);
         //System.assertEquals(test_shipstation_ordernumber_as_id, testOrderItem.shipstation_ordernumber_as_id__c);
         System.assertEquals(test_ordernumber_sku_as_id, testOrderItem.ordernumber_sku_as_id__c);
 
-System.Debug(LoggingLevel.ERROR,'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ after insert, before requery');
-System.Debug(LoggingLevel.ERROR,'testOrder.Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.AccountId');
-System.Debug(LoggingLevel.ERROR,testOrder.AccountId);
-System.Debug(LoggingLevel.ERROR,'testOrder.EffectiveDate');
-System.Debug(LoggingLevel.ERROR,testOrder.EffectiveDate);
-System.Debug(LoggingLevel.ERROR,'testOrder.Pricebook2Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Pricebook2Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.Status');
-System.Debug(LoggingLevel.ERROR,testOrder.Status);
-System.Debug(LoggingLevel.ERROR,'testOrder.shipstation_ordernumber_as_id__c');
-System.Debug(LoggingLevel.ERROR,testOrder.shipstation_ordernumber_as_id__c);
-System.Debug(LoggingLevel.ERROR,'testOrder.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
-
-
         testOrder = [SELECT Id, 
                         AccountId,
                         EffectiveDate,
@@ -286,40 +212,8 @@ System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
                         Marketplace__c
                         FROM Order WHERE (shipstation_ordernumber_as_id__c LIKE :test_shipstation_ordernumber_as_id)];
 
-System.Debug(LoggingLevel.ERROR,'\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ after requery');
-System.Debug(LoggingLevel.ERROR,'testOrder.Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.AccountId');
-System.Debug(LoggingLevel.ERROR,testOrder.AccountId);
-System.Debug(LoggingLevel.ERROR,'testOrder.EffectiveDate');
-System.Debug(LoggingLevel.ERROR,testOrder.EffectiveDate);
-System.Debug(LoggingLevel.ERROR,'testOrder.Pricebook2Id');
-System.Debug(LoggingLevel.ERROR,testOrder.Pricebook2Id);
-System.Debug(LoggingLevel.ERROR,'testOrder.Status');
-System.Debug(LoggingLevel.ERROR,testOrder.Status);
-System.Debug(LoggingLevel.ERROR,'testOrder.shipstation_ordernumber_as_id__c');
-System.Debug(LoggingLevel.ERROR,testOrder.shipstation_ordernumber_as_id__c);
-System.Debug(LoggingLevel.ERROR,'testOrder.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
-
-
-System.Debug(LoggingLevel.ERROR,'testOrder.Marketplace__c');
-System.Debug(LoggingLevel.ERROR,testOrder.Marketplace__c);
-
-System.Debug(LoggingLevel.ERROR,'test_marketplace');
-System.Debug(LoggingLevel.ERROR,test_marketplace);
-
-
-        
-
-
-
         // checking that the marketplace got assigned to the order
         System.assertEquals(test_marketplace, testOrder.Marketplace__c);
-        //confirmed this actually works through logs but for some reason the test process cant see the changes
-        //done in the trigger
-
-
 
         // Create the second ShipstationOrderItemImport__c
         ShipstationOrderItemImport__c test_SSOIT2 = new ShipstationOrderItemImport__c(
@@ -341,72 +235,21 @@ System.Debug(LoggingLevel.ERROR,test_marketplace);
             ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
         );
 
+        OrderItem testOrderItem2 = new OrderItem(
 
-                OrderItem testOrderItem2 = new OrderItem(
+            //default fields
+            //only set these
+            OrderId = testOrder.Id,
+            Product2Id = testProduct.ID, 
+            PricebookEntryId = testPricebookEntry.Id,
 
-                    //default fields
-                    //only set these
-                    OrderId = testOrder.Id,
-                    Product2Id = testProduct.ID, 
-                    PricebookEntryId = testPricebookEntry.Id,
-
-
-
-
-
-
-
-
-
-                    //custom fields
-                    /*
-                    Fulfillment_SKU__c = orderItemImport.Fulfillment_SKU__c,
-                    Image_URL__c = orderItemImport.Image_URL__c,
-                    Name__c = orderItemImport.Name__c,
-                    SKU__c = orderItemImport.SKU__c,
-                    UPC__c = orderItemImport.UPC__c,
-                    Weight_Units__c = orderItemImport.Weight_Units__c,
-                    Product_ID__c = orderItemImport.Product_ID__c,
-                    Quantity__c = orderItemImport.Quantity__c,
-                    Shipping_Amount__c = orderItemImport.Shipping_Amount__c,
-                    Tax_Amount__c = orderItemImport.Tax_Amount__c,
-                    Unit_Price__c = orderItemImport.Unit_Price__c,
-                    Weight_Value__c = orderItemImport.Weight_Value__c,
-                    //Marketplace__c = orderItemImport.Marketplace__c,
-                    //shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
-                    
-                    
-                    */
-
-                    //and this one so it can find it; the rest will be set by the trigger
-
-                    ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
-
-                    //no wait thast stupid lmao we only want the ones that it will set
-                    //no actually we do want this
-
-                );
-
-
-
-
-
-
-
-
+            //and this one so it can find it; the rest will be set by the trigger
+            ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
+        );
 
         //Test.startTest();
         result = Database.insert(test_SSOIT2, false);
         //Test.stopTest();
-
-        // already has an existing OrderItem from above lol
-        // no wait that's stupid
-
-
-
-
-
-
 
         testOrderItem2 = [SELECT Id, 
                             OrderId, 
@@ -429,7 +272,7 @@ System.Debug(LoggingLevel.ERROR,test_marketplace);
                             Unit_Price__c, 
                             Weight_Value__c, 
                             ordernumber_sku_as_id__c
-                            FROM OrderItem WHERE (ordernumber_sku_as_id__c LIKE :test_ordernumber_sku_as_id)];
+                            FROM OrderItem WHERE (ordernumber_sku_as_id__c = :test_ordernumber_sku_as_id)];
 
         System.assert(result.isSuccess());
 
@@ -479,124 +322,7 @@ System.Debug(LoggingLevel.ERROR,test_marketplace);
         //System.assertEquals(test_shipstation_ordernumber_as_id, testOrderItem2.shipstation_ordernumber_as_id__c);
         System.assertEquals(test_ordernumber_sku_as_id, testOrderItem2.ordernumber_sku_as_id__c);
 
-
-
-
-
-
-        // now with a matching existing OrderItem
-/*
-        ShipstationOrderItemImport__c test_SSOIT = new ShipstationOrderItemImport__c(
-
-            Fulfillment_SKU__c = test_fulfillmentSKU,
-            Image_URL__c = test_imageURL,
-            Name__c = test_name,
-            SKU__c = test_SKU,
-            UPC__c = test_UPC,
-            Weight_Units__c = test_weightUnits,
-            Product_ID__c = test_productID,
-            Quantity__c = test_quantity,
-            Shipping_Amount__c = test_shippingAmount,
-            Tax_Amount__c = test_taxAmount,
-            Unit_Price__c = test_unitPrice,
-            Weight_Value__c = test_weightValue,
-            Marketplace__c = test_marketplace,
-            shipstation_ordernumber_as_id__c = test_shipstation_ordernumber_as_id,
-            ordernumber_sku_as_id__c = test_ordernumber_sku_as_id
-        );
-
-                OrderItem newOrderItem = new OrderItem(
-
-                    //default fields
-                    OrderId = testOrder.Id,
-                    Product2Id = productId, 
-                    PricebookEntryId = pricebookentryId, 
-                    Quantity = orderItemImport.Quantity__c,
-                    UnitPrice = orderItemImport.Unit_Price__c,
-
-                    //custom fields
-                    Fulfillment_SKU__c = orderItemImport.Fulfillment_SKU__c,
-                    Image_URL__c = orderItemImport.Image_URL__c,
-                    Name__c = orderItemImport.Name__c,
-                    SKU__c = orderItemImport.SKU__c,
-                    UPC__c = orderItemImport.UPC__c,
-                    Weight_Units__c = orderItemImport.Weight_Units__c,
-                    Product_ID__c = orderItemImport.Product_ID__c,
-                    Quantity__c = orderItemImport.Quantity__c,
-                    Shipping_Amount__c = orderItemImport.Shipping_Amount__c,
-                    Tax_Amount__c = orderItemImport.Tax_Amount__c,
-                    Unit_Price__c = orderItemImport.Unit_Price__c,
-                    Weight_Value__c = orderItemImport.Weight_Value__c,
-                    //Marketplace__c = orderItemImport.Marketplace__c,
-                    //shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
-                    ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c
-                );
-
-*/
-
-
-Test.stopTest();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        Test.stopTest();
+        
     }
 }
