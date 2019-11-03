@@ -1,0 +1,2 @@
+SKU,Name,WarehouseLocation,WeightOz,Category,Tag1,Tag2,Tag3,Tag4,Tag5,CustomsDescription,CustomsValue,CustomsTariffNo,CustomsCountry,ThumbnailUrl,UPC,FillSKU,Length,Width,Height,UseProductName,Active,ParentSKU,IsReturnable,Description,JetBrand,JetPrice,JetMultiPackQuantity,JetCategory,JetInventoryOverride
+TEST-PRODUCT,Test Product 2,B16-Bin 21,13,Widgets,Fragile,Small,,,,Small Widget,10,,US,,,FBA-1,4,4,5.5,,TRUE,,TRUE,"This is a wonderful test product. The description includes commas, 'single quotes', and ""double quotes.""",XYZ Company,9.99,1,1000005,

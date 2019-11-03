@@ -1,0 +1,11 @@
+SKU,Name,WarehouseLocation,WeightOz,Category,Tag1,Tag2,Tag3,Tag4,Tag5,CustomsDescription,CustomsValue,CustomsTariffNo,CustomsCountry,ThumbnailUrl,UPC,FillSKU,Length,Width,Height,UseProductName,Active,ParentSKU,IsReturnable,Description,JetBrand,JetPrice,JetMultiPackQuantity,JetCategory,JetInventoryOverride
+BASE-B00RBP97D8,Raindrop Base [Black] Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+BASE-6Z-I22J-SHQS,Raindrop Base [White] Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+BASE-B00MWQCNSW,Raindrop Base [Light Wood] Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+BASE-B07PJ191H7,Droplet Base [Red Wood] Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+BASE-B07PFG2Q3Z,Droplet Base [Light Wood] Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+REP-DROP-CAP,Droplet Cap Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+REP-RAIN-CAP,Raindrop Cap Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+REP-DROP-RES,Droplet Reservoir Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+REP-RAIN-RES,Raindrop Reservoir Replacement,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
+EO-FREE,Free Essential Oil,,,,,,,,,,,,,,,,,,,,TRUE,,,,,,,,
