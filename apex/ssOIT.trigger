@@ -29,7 +29,15 @@ trigger ssOIT on ShipstationOrderItemImport__c ( after insert ) {
             Order order = orderList[0];
 
             // assign the marketplace to the order
-            order.Marketplace__c = orderItemImport.Marketplace__c;
+
+            // if it has no marketplace, just set it to that unless that's null too
+            if( (order.Marketplace__c == null) && (orderItemImport.Marketplace__c != null) ){
+                order.Marketplace__c = orderItemImport.Marketplace__c;
+            }
+            // if its existing and it doesn't already contain this information and info is not null, then add it to the marketplace field
+            else if( (!order.Marketplace__c.contains(orderItemImport.Marketplace__c)) && (orderItemImport.Marketplace__c != null) ){
+                order.Marketplace__c += '\n' + orderItemImport.Marketplace__c;
+            }
 
             update order;
 
