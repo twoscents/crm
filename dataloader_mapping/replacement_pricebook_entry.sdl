@@ -1,0 +1,9 @@
+#Mapping values
+#Sun Nov 03 15:36:56 EST 2019
+Use\ Standard\ Price=UseStandardPrice
+pricebook_sku_as_id=pricebook_sku_as_id__c
+Product=Product2Id
+Price\ Book=Pricebook2Id
+Active=IsActive
+List\ Price=UnitPrice
+sku_as_id=sku_as_id__c
