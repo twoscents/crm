@@ -1,0 +1,6 @@
+"ACCOUNT NAME","EMAIL","PHONE","DATE CREATED","EMAIL_AS_ID","MARKETPLACE","ERROR"
+"chrissrj48@gmail.com","chrissrj48@gmail.com","909-260-7209","2/26/2019","chrissrj48@gmail.com","Warranty","duplicate value found: email_as_id__c duplicates value on record with id: 0013k00002bwTKQ"
+"liannecorte@hotmail.com","liannecorte@hotmail.com","248-974-7204","3/2/2019","liannecorte@hotmail.com","Warranty","duplicate value found: email_as_id__c duplicates value on record with id: 0013k00002dHfPo"
+"compbug@erols.com","compbug@erols.com","202-365-7597","3/16/2019","compbug@erols.com","Warranty","duplicate value found: email_as_id__c duplicates value on record with id: 0013k00002bwTLA"
+"coolroger.white00@gmail.com","coolroger.white00@gmail.com","5015453443","4/18/2019","coolroger.white00@gmail.com","Warranty","duplicate value found: email_as_id__c duplicates value on record with id: 0013k00002dHfPq"
+"caracombs@gmail.com","caracombs@gmail.com","9136452384","6/25/2019","caracombs@gmail.com","Warranty","duplicate value found: email_as_id__c duplicates value on record with id: 0013k00002dHfQm"
