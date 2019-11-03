@@ -1,9 +1,10 @@
 #Mapping values
-#Thu Oct 31 14:37:17 EDT 2019
+#Sun Nov 03 14:44:33 EST 2019
 AccountId=AccountId
 Email=Email
 FirstName=FirstName
 Full\ Name=Full_Name__c
+Marketplace=Marketplace__c
 email_as_id=email_as_id__c
 Phone=Phone
 LastName=LastName
