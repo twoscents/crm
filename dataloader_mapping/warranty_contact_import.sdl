@@ -1,0 +1,11 @@
+#Mapping values
+#Thu Oct 31 14:37:17 EDT 2019
+AccountId=AccountId
+Email=Email
+FirstName=FirstName
+Full\ Name=Full_Name__c
+email_as_id=email_as_id__c
+Phone=Phone
+LastName=LastName
+email_name_as_id=email_name_as_id__c
+Date\ Created=Date_Created__c

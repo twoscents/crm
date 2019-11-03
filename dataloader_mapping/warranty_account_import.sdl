@@ -1,0 +1,8 @@
+#Mapping values
+#Thu Oct 31 14:23:12 EDT 2019
+Email=Customer_Email__c
+Account\ Name=Name
+Marketplace=Marketplace__c
+email_as_id=email_as_id__c
+Phone=Phone
+Date\ Created=Date_Created__c

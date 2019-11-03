@@ -1,0 +1,17 @@
+#Mapping values
+#Mon Oct 28 16:04:57 EDT 2019
+Product\ ID=Product_ID__c
+Shipping\ Amount=Shipping_Amount__c
+UPC=UPC__c
+Weight\ Units=Weight_Units__c
+Name=Name__c
+Tax\ Amount=Tax_Amount__c
+Weight\ Value=Weight_Value__c
+Unit\ Price=Unit_Price__c
+ordernumber_sku_as_id=ordernumber_sku_as_id__c
+Image\ URL=Image_URL__c
+Quantity=Quantity__c
+shipstation_ordernumber_as_id=shipstation_ordernumber_as_id__c
+Marketplace=Marketplace__c
+Fulfillment\ SKU=Fulfillment_SKU__c
+SKU=SKU__c
