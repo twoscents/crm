@@ -1,0 +1,299 @@
+
+
+https://login.salesforce.com/packaging/installPackage.apexp?p0=04t4T000001ps7I
+
+
+TO MOVE OVER TO MAIN SALESFORCE
+--custom fields from each object
+--any custom objects
+--pricebook2 "standard"
+--custom status picklist values
+--pricebook entries for standard price book
+--fix all accounts and orders in shipstation
+
+--break upsert into insert and then update
+--have separate insert all, insert and update all, and insert new update updated, packages
+
+--customer, billing, etc, emails custom fields for orders, accounts, to capture additional data
+
+--apex code that checks each incoming order, account, and upate, and runs a check to see if the accounts and contacts have already been updated with the items they ordered, and if not, then adds them
+	--no it should only update on order insert and updates, there is no reason to check anything else
+	--actually maybe even only order inserts
+
+--apex also checks emails or other and appends the market source to the order if there is no way that we can figure out to have the source from shiptstation 
+
+
+
+
+
+
+--import additional +
+
+
+po 2300
+tulsa, ok
+74192
+
+"ID","NAME"
+"01s3k000002Tcq5AAC","Standard Price Book"
+"01s3k000002UJ8oAAG","Shipstation"
+
+
+
+512-485-4282
+
+
+Email + "_" + Name
+
+"01s3k000002UJ8oAAG_" + Sku
+
+
+
+
+
+
+Id
+required
+DT_WSTR
+
+
+
+
+
+
+by lookup	
+OpportunityId (Opportunity)
+required
+DT_WSTR
+PricebookEntryId (PricebookEntry)
+DT_WSTR
+Product2Id (Product2)
+DT_WSTR
+Quantity
+required
+DT_R8
+TotalPrice
+DT_R8
+UnitPrice
+by column	
+UnitPrice
+DT_R8
+ServiceDate
+DT_DBDATE
+Description
+DT_WSTR
+
+
+
+First: (TOKENCOUNT(Name," ") > 1) ? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : ""
+
+
+Last: (TOKENCOUNT(Name," ") > 1) ? REPLACENULL(SUBSTRING(Name,FINDSTRING(Name," ",1)+1,(LEN(Name)-FINDSTRING(Name," ",1)+2)),Name) : Name
+
+
+
+
+
+
+
+
+LastName: SUBSTRING([last, first],1,FINDSTRING([last, first],",",1)-1)
+
+FirstName: SUBSTRING([last, first],FINDSTRING([last, first]," ",1)+1,(LEN([last, first])-FINDSTRING([last, first],",",1)+2))
+
+
+
+
+FINDSTRING(character_expression, searchstring, occurrence)
+Returns the location of the specified occurrence of a string in a character expression.
+
+SUBSTRING(character_expression, position, length)
+Returns the part of the specified character expression that starts at the specified position and has the specified length.
+
+
+
+
+
+
+
+
+
+FirstName: SUBSTRING([first last],1,FINDSTRING([first last]," ",1)-1)
+
+Last Name: SUBSTRING([first last],FINDSTRING([first last]," ",1)+1,(LEN([first last])-FINDSTRING([first last]," ",1)+2))
+
+
+
+SUBSTRING(Name,FINDSTRING(Name," ",1)+1,(LEN(Name)-FINDSTRING(Name," ",1)+2))
+
+
+
+SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1)
+
+
+
+Street1+REPLACENULL("\n"+Street2,"")+REPLACENULL("\n"+Street3,"")
+
+
+REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"")
+
+
+REPLACENULL(SUBSTRING(Name,FINDSTRING(Name," ",1)+1,(LEN(Name)-FINDSTRING(Name," ",1)+2)),Name)
+
+
+REPLACENULL(CustomerEmail,[Customers_Orders_CustomerId.Email])
+
+
+
+
+
+
+TOKENCOUNT(" ", Name)? 
+
+
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : " "
+
+
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,FINDSTRING(Name," ",1)+1,(LEN(Name)-FINDSTRING(Name," ",1)+2)),Name) : Name
+
+
+
+
+So, the expressions will look like this:
+firstname:
+(TOKENCOUNT(Name," ") > 1) ? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : Name
+
+lastname:
+(TOKENCOUNT(Name," ") > 1) ? REPLACENULL(SUBSTRING(Name,FINDSTRING(Name," ",1)+1,(LEN(Name)-FINDSTRING(Name," ",1)+2)),Name) : Name
+
+Should you have any questions, do not hesitate to contact us back.
+
+
+REPLACENULL(CustomerEmail,CustomerUsername)
+
+
+REPLACENULL(CustomerEmail,REPLACENULL([Customers_Orders_CustomerId.Email],CustomerUsername))
+
+REPLACENULL([Customers_Orders_CustomerId.Name],REPLACENULL(ShipToName,REPLACENULL(BillToName,AdvancedOptions_BillToParty)))
+
+
+BillToName ShipToName AdvancedOptions_BillToParty   [Customers_Orders_CustomerId.Name]
+
+
+
+
+I am trying to import shipstation order lineitems into salesforce order lineitems. It seems like any package that contains them runs for a very long time. I will leave one running until it fails so that I can get an error log from it. 
+
+
+The "Upsert Account, Contact, Product2, PricebookEntry, Order, OrderItem - TEST ONLY ORDERITEMS" integration package is one such package that contains the task which seems to be causing problems. 
+
+
+I think it is the orderlineitem -> "order item" upsert that is the issue, likely either in grabbing the "order id" from salesforce or in using the lineitemkey as a foreign key. I say this because it is so far only packages that contain that task that run for a very long time; others either fail or partially complete in just a few minutes.
+
+
+If lineitemkey is not a unique identifier for lineitems, that would pose a problem as it seems there are not enough lookup steps available specify which order the lineitem's order id should be, which would be required as there are no other distinguishing variables available. I have searched shipstation's api as well as some other sites (like random githubs) that make mention of lineitemkey, but none of them unambiguously state whether it is in fact a unique key.
+
+
+
+
+
+
+I am having several errors in the "Upsert Account, Contact, Product2, PricebookEntry, Order - TEST" package that I would appreciate help with:
+
+"ErrorDescription";"AccountId";"LastName";"FirstName";"MailingStreet";"MailingCity";"MailingState";"MailingPostalCode";"MailingCountry";"Phone";"Email";"LeadSource";"email_as_id__c";"Full_Name__c";"Marketplace__c";"Date_Created__c";"Date_Modified__c"
+"An error occurred during computation of the expression.   Column name: 'FirstName'.";"";"";"";"";"";"MI";"49866-1572";"US";"9062269658";"x839tpny2qywk1l@marketplace.amazon.com";"";"x839tpny2qywk1l@marketplace.amazon.com";"Amy";"";"1/5/2019 7:10:08 PM";"1/5/2019 7:10:08 PM"
+
+The expression: 
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : " "
+
+and also tried
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : Name
+
+What I am trying to accomplish is splitting up a space separated full name into first and last name, but to have it check first if there are spaces and if not to skip trying to split up the name. It seems to fail on thing that do not contain any spaces. Is it still evaluating the first expression in the if statement even though its not being run?
+
+
+"ErrorDescription";"Pricebook2Id";"Product2Id";"UnitPrice";"sku_as_id__c"
+"No standard price defined for this product";"01s4T000001qIGbQAM";"01t4T000000ypYQQAY";"11.19";"0674060717"
+
+I am not sure if this is something that I have to do on my end in salesforce or if this is something that I have done incorrectly in the import package. 
+
+
+
+
+
+I am also having an issue where I cannot get the source/marketplace from shipstation; I have tried both using "Orders.AdvancedOptions_Source" and "Shipments.AdvancedOptions_Source where
+Shipments.OrderNumber = (Column = OrderNumber)"
+
+
+
+
+
+Issues with shipstation "orderitem" -> salesforce "orderitem", and other errors. 
+
+
+shipstation salesforce orderlineitem orderitem lineitem line item
+
+Hi,
+
+I am having trouble with a shipstation "orderitem" -> salesforce "orderitem" task. 
+
+I have tried upsert, insert and update separately, but it appears there is currently no way to add orderitems from shipstation into salesforce. Is this correct?
+
+The limitation appears to be that I can either access the "OrderId" information (the parent order that holds the orderitem) using relational mapping, or access the "lineItemKey" or "orderItemId" (which are the only pieces of unique info for the OrderItems, from the shipstation API:
+
+orderItemId		number		The system generated identifier for the OrderItem. This is a read-only field.
+lineItemKey		string		An identifier for the OrderItem in the originating system.
+
+), but not both sets. 
+
+When using shipstation orderitems -> salesforce orderitem, (there is no option to load related that adds any additional fields) I have access to all the orderitem fields but no way to establish the "orderid" field; I have tried to do target or source lookups but this is not possible, because the only field available in Orders which would possibly reference the orderlineitem is the Items fields, which according to the shipstation API:
+
+items		OrderItem[]		Array of purchased items.
+
+But any comparisons of the orderitem fields to the items field in skyvia fails; in the case of the two most likely things to compare, comparing lineItemKey results in an error of:
+
+"No record found in object 'Orders' for lookup by column 'Items' = '65485750620738'."
+
+And comparison of the array to orderItemId is strictly disallowed as it is "invalid type." I realize the "items" array contains OrderItems, not lineItemKeys or orderItemIds, but as there is no way to directly reference OrderItem objects (only their fields), I had hoped that this part might have been abstracted to check for an OrderItems object in the array which has the same field values. 
+
+Using the "External ID" lookup option gives access to the external id of the Order object, but none of the fields available in the "Source Column" dropdown would correspond to the external ID, or even to the order at all. 
+
+When using shipstation orders -> salesforce orders, loading related on salesforce orderitems, and mapping the "order.orderitem" object I have access to the "OrderId" via relation mapping, but only access to the columns from the shipstation "order" object, not the "orderitem" object, so I cannot fill out any fields. Since there are no fields in the "order" object I can use to find the "orderitem" object, I cannot do target or source lookups to fill these fields. But I suspect that this is correct behavior. This doesn't allow me to do anything useful, as even if I were to insert these OrderItems, using constants for the fields I must fill but cannot currently, I would be unable to later update them to correct values since none of the fields I could give them would have values which would be unique to that particular OrderItem. 
+
+And so I cannot add any orderitems. I hope that I am incorrect and there is some way to do it, or that this functionality will be added soon. 
+
+I have attached pictures demonstrating what I have stated above.
+
+I am also having two other minor issues; the first is that I cannot get the source/marketplace from shipstation; I have tried both using "Orders.AdvancedOptions_Source" (which results in a null value) and "Shipments.AdvancedOptions_Source where
+Shipments.OrderNumber = (Column = OrderNumber)" lookup, which either results in the error "No record found in object 'Shipments' for lookup by column 'OrderNumber' = '111-6129908-0369864'." or a null value. I am able to view this field in shipstation, but for some reason none of the field options available will transfer this value. 
+
+The second is that when trying to use an expression to split up first and last names passed in a full name field, separated by a space character (" "), I get:
+
+"ErrorDescription";"AccountId";"LastName";"FirstName";"MailingStreet";"MailingCity";"MailingState";"MailingPostalCode";"MailingCountry";"Phone";"Email";"LeadSource";"email_as_id__c";"Full_Name__c";"Marketplace__c";"Date_Created__c";"Date_Modified__c"
+"An error occurred during computation of the expression.   Column name: 'FirstName'.";"";"";"";"";"";"MI";"49866-1572";"US";"9062269658";"x839tpny2qywk1l@marketplace.amazon.com";"";"x839tpny2qywk1l@marketplace.amazon.com";"Amy";"";"1/5/2019 7:10:08 PM";"1/5/2019 7:10:08 PM"
+
+for values where there are no space characters (" ").
+
+The expression: 
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : " "
+
+and also tried
+
+(TOKENCOUNT(" ", Name) > 0)? REPLACENULL(SUBSTRING(Name,1,FINDSTRING(Name," ",1)-1),"") : Name
+
+What I am trying to accomplish is splitting up a space separated full name into first and last name, but to have it check first if there are spaces and if not to skip trying to split up the name. It seems to fail on thing that do not contain any spaces. Is it still evaluating the first expression in the if statement even though its not being run?
+
+
+Thank you so much for your time spent looking into this. 
+
+
+
+
+
+
+

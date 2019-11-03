@@ -1,0 +1,257 @@
+
+
+Fulfillment SKU		Image URL		Name	SKU		UPC		Weight Units	Product ID		Quantity		Shipping Amount		Tax Amount	Unit Price		Weight Value	Marketplace		shipstation_ordernumber_as_id	ordernumber_sku_as_id
+
+
+
+
+
+Fulfillment_SKU__c	Image_URL__c	Name__c	SKU__c	UPC__c	Weight_Units__c	Product_ID__c	Quantity__c	Shipping_Amount__c	Tax_Amount__c	Unit_Price__c	Weight_Value__c	Marketplace__c	shipstation_ordernumber_as_id__c	ordernumber_sku_as_id__c
+
+
+
+fulfillmentSKU	 				Fulfillment_SKU__c;
+imageURL						Image_URL__c;									
+name							Name__c;								
+SKU								SKU__c;						
+UPC								UPC__c;						
+weightUnits						Weight_Units__c;								
+productID						Product_ID__c;								
+quantityc						Quantity__c;							
+shippingAmount					Shipping_Amount__c;								
+taxAmount						Tax_Amount__c;							
+unitPrice						Unit_Price__c;								
+WeightValue						Weight_Value__c;							
+marketplace						Marketplace__c;								
+shipstation_ordernumber_as_id	shipstation_ordernumber_as_id__c;											
+ordernumber_sku_as_id			ordernumber_sku_as_id__c;		
+
+
+fulfillmentSKU	 				Fulfillment_SKU__c
+imageURL						Image_URL__c									
+name							Name__c								
+SKU								SKU__c						
+UPC								UPC__c						
+weightUnits						Weight_Units__c								
+productID						Product_ID__c								
+quantityc						Quantity__c							
+shippingAmount					Shipping_Amount__c								
+taxAmount						Tax_Amount__c							
+unitPrice						Unit_Price__c								
+WeightValue						Weight_Value__c								
+marketplace						Marketplace__c								
+shipstation_ordernumber_as_id	shipstation_ordernumber_as_id__c											
+ordernumber_sku_as_id			ordernumber_sku_as_id__c								
+
+
+
+private String fulfillmentSKU;	 				
+private String imageURL;						
+private String name;							
+private String SKU;								
+private String UPC;								
+private String weightUnits;						
+private Integer productID;						
+private Integer quantity;						
+private Decimal shippingAmount;					
+private Decimal taxAmount;						
+private Decimal unitPrice;						
+private Decimal WeightValue;			
+	
+private String marketplace;						
+private String shipstation_ordernumber_as_id;	
+private String ordernumber_sku_as_id;			
+
+
+private String fulfillmentSKU;
+private String imageURL;
+private String name;
+private String SKU;
+private String UPC;
+private String weightUnits;
+private Integer productID;
+private Integer quantity;
+private Decimal shippingAmount;
+private Decimal taxAmount;
+private Decimal unitPrice;
+private Decimal WeightValue;
+
+private String marketplace;
+private String shipstation_ordernumber_as_id;
+private String ordernumber_sku_as_id;
+
+
+this.fulfillmentSKU = orderItem.Fulfillment_SKU__c
+this.imageURL = orderItem.Image_URL__c
+this.name = orderItem.Name__c
+this.SKU = orderItem.SKU__c
+this.UPC = orderItem.UPC__c
+this.weightUnits = orderItem.Weight_Units__c
+this.productID = orderItem.Product_ID__c
+this.quantityc = orderItem.Quantity__c
+this.shippingAmount = orderItem.Shipping_Amount__c
+this.taxAmount = orderItem.Tax_Amount__c
+this.unitPrice = orderItem.Unit_Price__c
+this.WeightValue = orderItem.Weight_Value__c
+this.marketplace = orderItem.Marketplace__c
+this.shipstation_ordernumber_as_id = orderItem.shipstation_ordernumber_as_id__c
+this.ordernumber_sku_as_id = orderItem.ordernumber_sku_as_id__c
+
+
+            Quantity = orderItemImport.Quantity__c,
+            UnitPrice = orderItemImport.Unit_Price__c,
+
+            //custom fields
+            Fulfillment_SKU__c = orderItemImport.Fulfillment_SKU__c,
+            Image_URL__c = orderItemImport.Image_URL__c,
+            Name__c = orderItemImport.Name__c,
+            SKU__c = orderItemImport.SKU__c,
+            UPC__c = orderItemImport.UPC__c,
+            Weight_Units__c = orderItemImport.Weight_Units__c,
+            Product_ID__c = orderItemImport.Product_ID__c,
+            Quantity__c = orderItemImport.Quantity__c,
+            Shipping_Amount__c = orderItemImport.Shipping_Amount__c,
+            Tax_Amount__c = orderItemImport.Tax_Amount__c,
+            Unit_Price__c = orderItemImport.Unit_Price__c,
+            Weight_Value__c = orderItemImport.Weight_Value__c,
+            Marketplace__c = orderItemImport.Marketplace__c,
+            shipstation_ordernumber_as_id__c = orderItemImport.shipstation_ordernumber_as_id__c,
+            ordernumber_sku_as_id__c = orderItemImport.ordernumber_sku_as_id__c
+
+
+
+
+
+
+
+
+
+         String test_fulfillmentSKU = 
+         String test_imageURL = 
+         String test_name = 
+         String test_SKU = 
+         String test_UPC = 
+         String test_weightUnits = 
+         Integer test_productID = 
+         Integer test_quantity = 
+         Decimal test_shippingAmount = 
+         Decimal test_taxAmount = 
+         Decimal test_unitPrice = 
+         Decimal test_weightValue = 
+
+         String test_marketplace = 
+         String test_shipstation_ordernumber_as_id = 
+         String test_ordernumber_sku_as_id = 
+
+
+
+
+
+        private String fulfillmentSKU;
+        private String imageURL;
+        private String name;
+        private String SKU;
+        private String UPC;
+        private String weightUnits;
+        private Integer productID;
+        private Integer quantity;
+        private Decimal shippingAmount;
+        private Decimal taxAmount;
+        private Decimal unitPrice;
+        private Decimal WeightValue;
+
+        private String marketplace;
+        private String shipstation_ordernumber_as_id;
+        private String ordernumber_sku_as_id;
+
+
+
+testPricebookEntry
+        System.assertEquals(
+        System.assert(result.isSuccess());
+
+        System.assert(Fulfillment_SKU__c, test_fulfillmentSKU);
+        System.assert(Image_URL__c, test_imageURL);
+        System.assert(Name__c, test_name);
+        System.assert(SKU__c, test_SKU);
+        System.assert(UPC__c, test_UPC);
+        System.assert(Weight_Units__c, test_weightUnits);
+        System.assert(Product_ID__c, test_productID);
+        System.assert(Quantity__c, test_quantity);
+        System.assert(Shipping_Amount__c, test_shippingAmount);
+        System.assert(Tax_Amount__c, test_taxAmount);
+        System.assert(Unit_Price__c, test_unitPrice);
+        System.assert(Weight_Value__c, test_weightValue);
+        System.assert(Marketplace__c, test_marketplace);
+        System.assert(shipstation_ordernumber_as_id__c, test_shipstation_ordernumber_as_id);
+        System.assert(ordernumber_sku_as_id__c, test_ordernumber_sku_as_id);
+
+
+
+        System.assert(result.isSuccess());
+        System.assert(testSSOrderItem.Fulfillment_SKU__c, test_fulfillmentSKU);
+        System.assert(testSSOrderItem.Image_URL__c, test_imageURL);
+        System.assert(testSSOrderItem.Name__c, test_name);
+        System.assert(testSSOrderItem.SKU__c, test_SKU);
+        System.assert(testSSOrderItem.UPC__c, test_UPC);
+        System.assert(testSSOrderItem.Weight_Units__c, test_weightUnits);
+        System.assert(testSSOrderItem.Product_ID__c, test_productID);
+        System.assert(testSSOrderItem.Quantity__c, test_quantity);
+        System.assert(testSSOrderItem.Shipping_Amount__c, test_shippingAmount);
+        System.assert(testSSOrderItem.Tax_Amount__c, test_taxAmount);
+        System.assert(testSSOrderItem.Unit_Price__c, test_unitPrice);
+        System.assert(testSSOrderItem.Weight_Value__c, test_weightValue);
+        System.assert(testSSOrderItem.Marketplace__c, test_marketplace);
+        System.assert(testSSOrderItem.shipstation_ordernumber_as_id__c, test_shipstation_ordernumber_as_id);
+        System.assert(testSSOrderItem.ordernumber_sku_as_id__c, test_ordernumber_sku_as_id);
+
+
+        System.assert(result.isSuccess());
+        System.assertEquals(testSSOrderItem.Fulfillment_SKU__c, test_fulfillmentSKU);
+        System.assertEquals(testSSOrderItem.Image_URL__c, test_imageURL);
+        System.assertEquals(testSSOrderItem.Name__c, test_name);
+        System.assertEquals(testSSOrderItem.SKU__c, test_SKU);
+        System.assertEquals(testSSOrderItem.UPC__c, test_UPC);
+        System.assertEquals(testSSOrderItem.Weight_Units__c, test_weightUnits);
+        System.assertEquals(testSSOrderItem.Product_ID__c, test_productID);
+        System.assertEquals(testSSOrderItem.Quantity__c, test_quantity);
+        System.assertEquals(testSSOrderItem.Shipping_Amount__c, test_shippingAmount);
+        System.assertEquals(testSSOrderItem.Tax_Amount__c, test_taxAmount);
+        System.assertEquals(testSSOrderItem.Unit_Price__c, test_unitPrice);
+        System.assertEquals(testSSOrderItem.Weight_Value__c, test_weightValue);
+        System.assertEquals(testSSOrderItem.Marketplace__c, test_marketplace);
+        System.assertEquals(testSSOrderItem.shipstation_ordernumber_as_id__c, test_shipstation_ordernumber_as_id);
+        System.assertEquals(testSSOrderItem.ordernumber_sku_as_id__c, test_ordernumber_sku_as_id);
+
+
+
+
+        System.assertEquals(testOrderItem.Fulfillment_SKU__c, test_fulfillmentSKU);
+        System.assertEquals(testOrderItem.Image_URL__c, test_imageURL);
+        System.assertEquals(testOrderItem.Name__c, test_name);
+        System.assertEquals(testOrderItem.SKU__c, test_SKU);
+        System.assertEquals(testOrderItem.UPC__c, test_UPC);
+        System.assertEquals(testOrderItem.Weight_Units__c, test_weightUnits);
+        System.assertEquals(testOrderItem.Product_ID__c, test_productID);
+        System.assertEquals(testOrderItem.Quantity__c, test_quantity);
+        System.assertEquals(testOrderItem.Shipping_Amount__c, test_shippingAmount);
+        System.assertEquals(testOrderItem.Tax_Amount__c, test_taxAmount);
+        System.assertEquals(testOrderItem.Unit_Price__c, test_unitPrice);
+        System.assertEquals(testOrderItem.Weight_Value__c, test_weightValue);
+        System.assertEquals(testOrderItem.Marketplace__c, test_marketplace);
+        System.assertEquals(testOrderItem.shipstation_ordernumber_as_id__c, test_shipstation_ordernumber_as_id);
+        System.assertEquals(testOrderItem.ordernumber_sku_as_id__c, test_ordernumber_sku_as_id);
+
+
+
+
+
+
+
+
+
+
+
+
+
+

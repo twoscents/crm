@@ -1,0 +1,119 @@
+ShipstationOrderItemImport
+Description
+Object used to import shipstation orderitems into salesforce with the data import wizard for handling via apex.
+API Name
+ShipstationOrderItemImport__c
+
+
+
+Fulfillment SKU	
+Fulfillment_SKU						Data Type	Text
+Fulfillment_SKU__c	 	 
+The fulfillment SKU associated with this OrderItem if the fulfillment provider requires an identifier other then the SKU.
+
+
+Image URL	
+Image_URL							Data Type	Text
+Image_URL__c	 	 
+The public URL to the product image.
+
+
+/* NOPE NEVER MIND
+line_item_key_as_id	
+line_item_key_as_id					Data Type	Text
+line_item_key_as_id__c	 	 
+Unique line item key from shipstation. Used as a foreign key.
+*/
+
+
+Name	
+Name								Data Type	Text
+Name__c	 	 
+The name of the product associated with this line item.
+
+
+SKU	
+SKU									Data Type	Text
+SKU__c	 	 
+The SKU (stock keeping unit) identifier for the product associated with this line item.
+
+
+UPC	
+UPC									Data Type	Text
+UPC__c	 	 
+The Universal Product Code associated with this OrderItem.
+
+
+Weight Units
+Weight_Units						Data Type	Text
+Weight_Units__c	 	 
+The weight units the weight of the item is given in. Check "Weight Value" for the corresponding weight amount. Allowed units are: "pounds", "ounces", or "grams"
+
+
+Product ID	
+Product_ID							Data Type	Number
+Product_ID__c	 	 
+The identifier for the Product Resource associated with this OrderItem.
+
+
+Quantity	
+Quantity							Data Type	Number
+Quantity__c	 	 
+The quantity of product ordered.
+
+
+Shipping Amount	
+Shipping_Amount						Data Type	Number
+Shipping_Amount__c	 	 
+The shipping amount or price of a single item specified by the order source.
+
+
+Tax Amount
+Tax_Amount							Data Type	Number
+Tax_Amount__c	 	 
+The tax price of a single item specified by the order source.
+
+
+Unit Price	
+Unit_Price							Data Type	Number
+Unit_Price__c	 	 
+The sell price of a single item specified by the order source.
+
+
+Weight Value
+Weight_Value						Data Type	Number
+Weight_Value__c	 	 
+The weight of the item. Check "Weight Units" for the corresponding units.
+
+
+
+//from order in the line thing
+
+
+Marketplace	
+Marketplace							Data Type	Text
+Marketplace__c	 	 
+Identifies the original source/marketplace of the order.
+
+
+shipstation_ordernumber_as_id
+shipstation_ordernumber_as_id		Data Type	Text
+shipstation_ordernumber_as_id__c	 	 
+Order number imported from shipstation used as foreign key for skyvia upsert operations.
+
+
+ordernumber_sku_as_id
+ordernumber_sku_as_id				Data Type	Text
+ordernumber_sku_as_id__c	 	 
+A concatenation of the shipstation ordernumber and sku used as foreign key for upsert operations. Not used currently but may be used once shipstation has support for orderitem import/upsert.
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,104 @@
+ROADMAP TO CRM SUCCESS
+
+--Copy then modify individual zaps for each order type, each feeds into same google sheet since apparently zaps do not get pulled with new types, only when they are first seen. This would need to be done even if we ignored pending orders or only pulled at shipped, since there could always be return/refund order updates.
+
+--Get test data from order with 2-5 objects
+	then have zaps that feed into salesforce directly or feed into google sheets first; 
+		-!-or both (but if both google sheets is not fed into salesforce, and only there for easy reference)
+			--I am leaning towards all feeding into google sheets and then from there only one is scraping google sheets and placing it into salesforce
+				(this would also allow for easy testing of google sheets -> salesforce pipeline)
+				--ZapierAmazon field needed in google sheets (or created in direct salesforce pipeline) using "[id] - [status]"
+
+--Once that is done we can create the classes and objects.
+
+//Salesforce custom objects:
+	ZapierAmazon
+		--updates order
+		--only linked to order
+		--isn't viewable from home page (since it's more of an internal object than one you'd want to view/edit)
+		
+		
+		The object created by an incoming order or order update pulled from Amazon by Zapier
+		
+		--dates are text
+		--boolean are checkboxes
+		--integers should be something else (probably number or text)
+		
+		
+		
+	Product
+		--linked to orders, contacts, and accounts
+		FIELDS
+		--everything in the product google sheet atm
+		--sellersku from amazon, guess that'll get updated as they come in as I didn't see that on the amazon pages
+	Order 
+		--linked to products, contacts, and accounts
+
+//use of salesforce base objects
+	contact
+		--linked to orders, products, and contacts
+		ADDED FIELDS
+			--productsOrdered
+			--retail, amazon, etc, tags
+		
+	account
+		--linked to contacts, products, and orders
+		ADDED FIELDS
+			--emailAsID			(only going to be used for amazon orders and other platforms that have similar account usage)
+			--productsOrdered
+			--retail, amazon, etc, tags
+
+//event handlers
+	ZapierAmazon event handler
+	
+
+/*
+ZapierAmazonOrder event handler steps
+
+New object created by zapier from amazon data
+    declare order object
+    declare account object
+    declare contact object
+    //check how updating existing is handled in apex, if it's creating copies or I have to pass by reference or whatever
+
+search existing "order" objects to check if one matches with order
+    if so, 
+        update it with order data from and amazon if needed
+        save order to transfer later
+    if not,
+        create it with the order data from amazon
+        save order to transfer later
+
+search existing account objects to check if one matches with info from order
+    search by email
+    if so, 
+        update it with order data from amazon if needed
+        save order to transfer later
+    if not, 
+        create it with the order data from amazon
+        save order to transfer later
+
+search existing contact objects to check if one matches with info from order
+    search by email, then if matches check name 
+    OR there may be a way to see what is already linked in apex
+    if so, 
+        update it with order data from amazon if needed
+        save order to transfer later
+    if not, 
+        create it with the order data from amazon
+        save order to transfer later
+
+Once the above is done
+
+    link the order to the account
+    link the contact to the account
+    link the order to the contact 
+    search each field for matching product objects
+        --we probably shouldn't create new ones if they don't already exist
+        when one is found, link it to 
+            --the order
+            --the account 
+            --the contacts
+        do this for every product field in the order
+
+*/

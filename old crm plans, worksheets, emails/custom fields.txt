@@ -1,0 +1,106 @@
+Make all foreign keys unique once we fix the existing data in shipstation so that they reject non-unique values
+--WILL have to fix all the shit in shipstation first, woo boy
+
+
+
+
+
+
+
+
+Order object fields
+
+
+Date Created					Date_Created__c			Date/Time		
+Date Modified					Date_Modified__c		Date/Time
+Latest Ship Date				Latest_Ship_Date__c		Date/Time		
+Marketplace						Marketplace__c			Text(255)		
+Marketplace 2					Marketplace_2__c		Text(255)
+
+Order Status	Order_Status__c	Text(255)
+
+
+Ship Date	Ship_Date__c	Date/Time
+
+
+shipstationOrderNumber	shipstationOrderNumber__c	Text(255) (External ID)    ***foreign key
+**shipstation_ordernumber_as_id
+
+
+*Customer Email	
+*Customer ID Email
+
+
+
+
+
+
+
+
+order date
+create date
+payment date
+
+
+
+
+
+
+
+Contact object fields
+
+email_as_id	email_as_id__c	Email (External ID)
+
+
+Date Created	Date_Created__c	Date/Time
+Date Modified	Date_Modified__c	Date/Time
+
+
+Full Name	Full_Name__c	Text(255)
+
+Marketplace	Marketplace__c	Text(255)
+
+
+
+
+Account object fields
+
+email_as_id	email_as_id__c	Email (External ID)
+
+
+
+Date Created	Date_Created__c	Date/Time		False	
+Date Modified	Date_Modified__c	Date/Time
+
+Marketplace	Marketplace__c	Text(255)
+
+
+
+Price Book Entry object fields
+
+sku_as_id	sku_as_id__c	Text(255) (External ID)
+
+
+
+
+Product Object fields
+
+
+Date Created	Date_Created__c	Date/Time		
+Date Updated	Date_Updated__c	Date/Time
+**Date Modified
+
+
+sku_as_id	sku_as_id__c	Text(255) (External ID)
+
+
+
+
+
+
+
+
+
+
+
+

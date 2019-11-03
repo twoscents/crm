@@ -1,0 +1,193 @@
+NEEDED, NOT INCLUDED IN AMAZON ORDER BASED STUFF BELOW:
+
+--flag for orders with the max number of items, to check them manually
+
+
+
+
+
+
+//////////////////////////////////
+
+
+PaymentMethodDetails_PaymentMethodDetail
+				
+IsReplacementOrder				
+IsBusinessOrder					
+OrderType						
+EarliestShipDate				
+LatestShipDate					
+SellerOrderId					
+id								
+PaymentMethod					
+FulfillmentChannel				
+IsPremiumOrder					
+	ShippingAddress_City						
+	ShippingAddress_Name						
+	ShippingAddress_CountryCode					
+	ShippingAddress_StateOrRegion				
+	ShippingAddress_AddressLine1				
+	ShippingAddress_PostalCode					
+BuyerName						
+LastUpdateDate					
+PurchaseDate					
+ShipmentServiceLevelCategory	
+	OrderTotal_CurrencyCode				
+	OrderTotal_Amount						
+BuyerEmail						
+AmazonOrderId					
+SalesChannel					
+NumberOfItemsUnshipped			
+ShipServiceLevel				
+OrderStatus						
+NumberOfItemsShipped			
+IsPrime		
+MarketplaceId										//this is going to be the same every time but well still track it in the case of having multiple amazon accounts or switching to a different one at some point
+														
+			OrderItems_0_ASIN	
+			OrderItems_0_SerialNumberRequired		//don't think we need this one, including anyway	
+			OrderItems_0_SellerSKU					
+			OrderItems_0_OrderItemId					
+			OrderItems_0_Title						
+			OrderItems_0_IsGift						//probably don't need to track this but I guess might as well		
+			OrderItems_0_ProductInfo_NumberOfItems					
+			OrderItems_0_QuantityShipped				
+			OrderItems_0_IsTransparency					//probably don't need this, including anyway			
+			OrderItems_0_QuantityOrdered					 
+
+LastItemQuantity  //this is going to be used as a "number boolean" flag to have it checked by a human
+
+
+
+
+paymentMethodDetails_PaymentMethodDetail
+				
+isReplacementOrder				
+isBusinessOrder					
+orderType						
+earliestShipDate				
+latestShipDate					
+sellerOrderId					
+id								
+paymentMethod					
+fulfillmentChannel				
+isPremiumOrder					
+	sA_City						
+	sA_Name						
+	sA_CountryCode					
+	sA_StateOrRegion				
+	sA_AddressLine1				
+	sA_PostalCode					
+buyerName						
+lastUpdateDate					
+purchaseDate					
+shipmentServiceLevelCategory	
+	orderTotal_CurrencyCode				
+	orderTotal_Amount						
+buyerEmail						
+amazonOrderId					
+salesChannel					
+numberOfItemsUnshipped			
+shipServiceLevel				
+orderStatus						
+numberOfItemsShipped			
+isPrime		
+marketplaceId	
+lastItemQuantity						
+														
+			oI_0_ASIN			
+			oI_0_SerialNumberRequired		
+			oI_0_SellerSKU					
+			oI_0_OrderItemId					
+			oI_0_Title						
+			oI_0_IsGift					
+			oI_0_ProductInfo_NumberOfItems					
+			oI_0_QuantityShipped
+			oI_0_IsTransparency				
+			oI_0_QuantityOrdered				
+			
+			oI_1_ASIN			
+			oI_1_SerialNumberRequired		
+			oI_1_SellerSKU					
+			oI_1_OrderItemId					
+			oI_1_Title						
+			oI_1_IsGift					
+			oI_1_ProductInfo_NumberOfItems					
+			oI_1_QuantityShipped
+			oI_1_IsTransparency				
+			oI_1_QuantityOrdered				
+
+			oI_2_ASIN			
+			oI_2_SerialNumberRequired		
+			oI_2_SellerSKU					
+			oI_2_OrderItemId					
+			oI_2_Title						
+			oI_2_IsGift					
+			oI_2_ProductInfo_NumberOfItems					
+			oI_2_QuantityShipped
+			oI_2_IsTransparency				
+			oI_2_QuantityOrdered				
+			
+			oI_3_ASIN			
+			oI_3_SerialNumberRequired		
+			oI_3_SellerSKU					
+			oI_3_OrderItemId					
+			oI_3_Title						
+			oI_3_IsGift					
+			oI_3_ProductInfo_NumberOfItems					
+			oI_3_QuantityShipped
+			oI_3_IsTransparency				
+			oI_3_QuantityOrdered					
+			
+			oI_4_ASIN			
+			oI_4_SerialNumberRequired		
+			oI_4_SellerSKU					
+			oI_4_OrderItemId					
+			oI_4_Title						
+			oI_4_IsGift					
+			oI_4_ProductInfo_NumberOfItems					
+			oI_4_QuantityShipped
+			oI_4_IsTransparency				
+			oI_4_QuantityOrdered				
+			
+			
+paymentMethodDetails_PaymentMethodDetail	isReplacementOrder	isBusinessOrder	orderType	earliestShipDate	latestShipDate	sellerOrderId	id	paymentMethod	fulfillmentChannel	isPremiumOrder	sA_City	sA_Name	sA_CountryCode	sA_StateOrRegion	sA_AddressLine1	sA_PostalCode	buyerName	lastUpdateDate	purchaseDate	shipmentServiceLevelCategory	orderTotal_CurrencyCode	orderTotal_Amount	buyerEmail	amazonOrderId	salesChannel	numberOfItemsUnshipped	shipServiceLevel	orderStatus	numberOfItemsShipped	isPrime	marketplaceId	lastItemQuantity							
+			
+
+
+
+			
+oI_0_ASIN	oI_0_SerialNumberRequired	oI_0_SellerSKU	oI_0_OrderItemId	oI_0_Title	oI_0_IsGift	oI_0_ProductInfo_NumberOfItems	oI_0_QuantityShipped	oI_0_IsTransparency	oI_0_QuantityOrdered
+			
+			
+BUMP
+			
+oI_1_ASIN	oI_1_SerialNumberRequired	oI_1_SellerSKU	oI_1_OrderItemId	oI_1_Title	oI_1_IsGift	oI_1_ProductInfo_NumberOfItems	oI_1_QuantityShipped	oI_1_IsTransparency	oI_1_QuantityOrdered
+			
+			
+BUMP			
+
+oI_2_ASIN	oI_2_SerialNumberRequired	oI_2_SellerSKU	oI_2_OrderItemId	oI_2_Title	oI_2_IsGift	oI_2_ProductInfo_NumberOfItems	oI_2_QuantityShipped	oI_2_IsTransparency	oI_2_QuantityOrdered
+			
+			
+BUMP			
+			
+oI_3_ASIN	oI_3_SerialNumberRequired	oI_3_SellerSKU	oI_3_OrderItemId	oI_3_Title	oI_3_IsGift	oI_3_ProductInfo_NumberOfItems	oI_3_QuantityShipped	oI_3_IsTransparency	oI_3_QuantityOrdered
+			
+			
+BUMP					
+			
+oI_4_ASIN	oI_4_SerialNumberRequired	oI_4_SellerSKU	oI_4_OrderItemId	oI_4_Title	oI_4_IsGift	oI_4_ProductInfo_NumberOfItems	oI_4_QuantityShipped	oI_4_IsTransparency	oI_4_QuantityOrdered
+			
+			
+BUMP				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			

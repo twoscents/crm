@@ -1,0 +1,159 @@
+
+
+
+list of orderitems
+--orderitems objects
+
+create orderitem constructor
+
+address separate object
+
+create order from za object
+create za object from za_c object
+
+
+remember that the za_c objects have a name that should be used in the zapier amazon somehow
+--its literally just 'Name'
+
+all other fields are just the variable names plus '__c'
+
+
+orderitemID MUST BE TEXT
+
+
+
+
+private Boolean isPrime;
+private Boolean isPremiumOrder;
+private Boolean isReplacementOrder;
+private Boolean isBusinessOrder;
+
+private DateTime earliestShipDate;
+private DateTime latestShipDate;
+private DateTime lastUpdateDate;
+private DateTime purchaseDate;
+
+private Integer orderTotal_Amount;
+private Integer numberOfItemsUnshipped;
+private Integer numberOfItemsShipped;
+private Integer lastItemQuantity;
+
+
+private String salesChannel;
+private String buyerEmail;
+
+private String orderTotal_CurrencyCode;
+
+private String paymentMethodDetails_PaymentMethodDetail;
+private String orderType;
+private String sellerOrderId;
+private String id;
+private String paymentMethod;
+private String fulfillmentChannel;
+private String buyerName;
+private String shipmentServiceLevelCategory;
+private String amazonOrderId;
+private String shipServiceLevel;
+private String orderStatus;
+private String marketplaceId;
+
+//differentobjectsbelow;
+
+private String sA_City;
+private String sA_Name;
+private String sA_CountryCode;
+private String sA_StateOrRegion;
+private String sA_AddressLine1;
+private String sA_PostalCode;
+
+
+
+
+private Boolean SerialNumberRequired;
+private Boolean IsGift;
+private Boolean IsTransparency;
+
+private Integer ProductInfo_NumberOfItems;
+private Integer QuantityShipped;
+private Integer QuantityOrdered;
+
+private String ASIN;
+private String SellerSKU;
+private String OrderItemId;
+private String Title;
+
+
+
+
+private Boolean oI_0_SerialNumberRequired;
+private Boolean oI_0_IsGift;
+private Boolean oI_0_IsTransparency;
+
+private Integer oI_0_ProductInfo_NumberOfItems;
+private Integer oI_0_QuantityShipped;
+private Integer oI_0_QuantityOrdered;
+
+private String oI_0_ASIN;
+private String oI_0_SellerSKU;
+private String oI_0_OrderItemId;
+private String oI_0_Title;
+
+
+
+
+private Boolean oI_1_SerialNumberRequired;
+private Boolean oI_1_IsGift;
+private Boolean oI_1_IsTransparency;
+private Boolean oI_2_SerialNumberRequired;
+private Boolean oI_2_IsGift;
+private Boolean oI_2_IsTransparency;
+private Boolean oI_3_SerialNumberRequired;
+private Boolean oI_3_IsGift;
+private Boolean oI_3_IsTransparency;
+private Boolean oI_4_SerialNumberRequired;
+private Boolean oI_4_IsGift;
+private Boolean oI_4_IsTransparency;
+
+
+
+private Integer oI_1_ProductInfo_NumberOfItems;
+private Integer oI_1_QuantityShipped;
+private Integer oI_1_QuantityOrdered;
+private Integer oI_2_ProductInfo_NumberOfItems;
+private Integer oI_2_QuantityShipped;
+private Integer oI_2_QuantityOrdered;
+private Integer oI_3_ProductInfo_NumberOfItems;
+private Integer oI_3_QuantityShipped;
+private Integer oI_3_QuantityOrdered;
+private Integer oI_4_ProductInfo_NumberOfItems;
+private Integer oI_4_QuantityShipped;
+private Integer oI_4_QuantityOrdered;
+
+
+private String oI_1_ASIN;
+private String oI_1_SellerSKU;
+private String oI_1_OrderItemId;
+private String oI_1_Title;
+
+
+private String oI_2_ASIN;
+private String oI_2_SellerSKU;
+private String oI_2_OrderItemId;
+private String oI_2_Title;
+
+
+private String oI_3_ASIN;
+private String oI_3_SellerSKU;
+private String oI_3_OrderItemId;
+private String oI_3_Title;
+
+
+private String oI_4_ASIN;
+private String oI_4_SellerSKU;
+private String oI_4_OrderItemId;
+private String oI_4_Title;
+
+
+
+
+

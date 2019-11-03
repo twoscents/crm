@@ -1,0 +1,65 @@
+PaymentMethodDetails
+	PaymentMethodDetail				Standard
+IsReplacementOrder				false
+IsBusinessOrder					false
+OrderType						StandardOrder
+EarliestShipDate				2019-09-23T06:59:59Z
+LatestShipDate					2019-09-23T06:59:59Z
+SellerOrderId					111-8851778-5596240
+id								111-8851778-5596240
+PaymentMethod					Other
+FulfillmentChannel				AFN
+IsPremiumOrder					false
+ShippingAddress
+	City							SUFFOLK
+	Name							Lakeesha Tallman
+	CountryCode						US
+	isAddressSharingConfidential	false  
+	StateOrRegion					VA
+	AddressLine1					102 CAMEL BACK CT
+	PostalCode						23434-1519
+BuyerName						Lakeesha L Tallman
+LastUpdateDate					2019-09-22T23:30:00.415Z
+PurchaseDate					2019-09-22T13:06:01.303Z
+ShipmentServiceLevelCategory	Expedited
+OrderTotal
+	CurrencyCode					USD
+	Amount							68.85
+BuyerEmail						7zhp9v8f3qw9zm4@marketplace.amazon.com
+AmazonOrderId					111-8851778-5596240
+SalesChannel					Amazon.com
+NumberOfItemsUnshipped			0
+ShipServiceLevel				Expedited
+OrderStatus						Shipped
+NumberOfItemsShipped			1
+IsPrime							false
+OrderItems				
+	0
+		OrderItem		
+		ASIN							B07PJ191H7
+		SerialNumberRequired			false
+		SellerSKU						3E-D8VF-289L
+		OrderItemId						05286801183034
+		Title							Two Scents Droplet Nebulizing Diffuser - Waterless diffuser For Essential Oils and Aromatherapy | Wood Base, Glass Top And Touch | Fills Even Big Room
+		IsGift							false
+		PromotionDiscountTax		
+			CurrencyCode					USD
+			Amount							0.00
+		TaxCollection		
+			Model							MarketplaceFacilitator
+			ResponsibleParty				Amazon Services, Inc.
+		PromotionDiscount			
+			CurrencyCode					USD
+			Amount							0.00
+		ItemPrice			
+			CurrencyCode					USD
+			Amount							64.95
+		ProductInfo			
+			NumberOfItems					1
+		QuantityShipped					1
+		IsTransparency					false
+		QuantityOrdered					1
+		ItemTax			
+			CurrencyCode					USD
+			Amount							3.90
+MarketplaceId					ATVPDKIKX0DER
